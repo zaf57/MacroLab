@@ -152,6 +152,28 @@ circle {
   font-size: 28px;
   font-weight: bold;
 }
+  
+  .macros {
+  margin-top: 30px;
+}
+
+.bar {
+  width: 100%;
+  height: 12px;
+  background: #2a2a2a;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.bar div {
+  height: 100%;
+  border-radius: 10px;
+  transition: 0.4s;
+}
+
+#proteinBar { background: #00ffae; }
+#carbsBar { background: #00bfff; }
+#fatBar { background: #ffcc00; }
 
 </style>
 </head>
@@ -191,43 +213,64 @@ circle {
 
 </div>
   
+ 
+
+<div class="macros">
+
+  <div>
+    <p>💪 Protéines: <span id="protein">0</span>g</p>
+    <div class="bar"><div id="proteinBar"></div></div>
+  </div>
+
+  <div>
+    <p>🍚 Glucides: <span id="carbs">0</span>g</p>
+    <div class="bar"><div id="carbsBar"></div></div>
+  </div>
+
+  <div>
+    <p>🧈 Lipides: <span id="fat">0</span>g</p>
+    <div class="bar"><div id="fatBar"></div></div>
+  </div>
+
+</div>
+  
 <div class="card">
 <h2>💪 Protéines</h2>
-  <button onclick="add(165,100)">🍗 Poulet (100g)</button>
-  <button onclick="add(250,100)">🐄 Steak (100g)</button>
-  <button onclick="add(208,100)">🐟 Saumon (100g)</button>
-  <button onclick="add(120,100)">🐟 Thon (100g)</button>
-  <button onclick="add(73,60)">🥚 1 Œuf</button>
-  <button onclick="add(80,100)">🥛 Fromage blanc (100g)</button>
-  <button onclick="add(120,30)">🥤 Whey</button>
+  <button onclick="add(165,100,31,0,3)">🍗 Poulet (100g)</button>
+  <button onclick="add(250,100,26,0,20)">🐄 Steak (100g)</button>
+  <button onclick="add(208,100,20,0,13)">🐟 Saumon (100g)</button>
+  <button onclick="add(120,100,26,0,1)">🐟 Thon (100g)</button>
+  <button onclick="add(73,60,6,1,5)">🥚 1 Œuf</button>
+  <button onclick="(80,100,8,4,3)">🥛 Fromage blanc (100g)</button>
+  <button onclick="add(120,30,24,3,1)">🥤 Whey</button>
 </div>
 
 <div class="card">
 <h2>🍚 Glucides</h2>
-  <button onclick="add(110,100)">🍚 Riz (100g)</button>
-  <button onclick="add(130,100)">🍝 Pâtes (100g)</button>
-  <button onclick="add(90,100)">🥔 Pomme de terre (100g)</button>
-  <button onclick="add(90,110)">🍌 Banane</button>
-  <button onclick="add(240,100)">🍞 Pain (100g)</button>
-  <button onclick="add(68,20)">🍯 Miel (20g)</button>
+  <button onclick="add(110,100,2,23,1)">🍚 Riz (100g)</button>
+  <button onclick="add(130,100,5,25,1)">🍝 Pâtes (100g)</button>
+  <button onclick="add(90,100,2,20,0)">🥔 Pomme de terre (100g)</button>
+  <button onclick="add(90,110,1,23,0)">🍌 Banane</button>
+  <button onclick="add(240,100,8,50,3)">🍞 Pain (100g)</button>
+  <button onclick="add(68,20,0,17,0)">🍯 Miel (20g)</button>
 </div>
 
 <div class="card">
 <h2>🧈 Lipides</h2>
-  <button onclick="add(90,10)">🫒 Huile (10g)</button>
-  <button onclick="add(183,30)">🌰 Amandes (30g)</button>
-  <button onclick="add(122,20)">🥜 Beurre de cacahuète (20g)</button>
-  <button onclick="add(246,150)">🥑 Avocat</button>
-  <button onclick="add(200,50)">🧀 Fromage (50g)</button>
+  <button onclick="add(90,10,0,0,10)">🫒 Huile (10g)</button>
+  <button onclick="add(183,30,6,6,15)">🌰 Amandes (30g)</button>
+  <button onclick="add(122,20,5,4,10)">🥜 Beurre de cacahuète (20g)</button>
+  <button onclick="add(246,150,3,12,22)">🥑 Avocat</button>
+  <button onclick="add(200,50,12,1,16)">🧀 Fromage (50g)</button>
 </div>
 
   <!-- LEGUMES -->
 <h2>🥦 Légumes</h2>
 <div class="card">
-  <button onclick="add(35,100)">🥦 Brocolis (100g)</button>
-  <button onclick="add(20,100)">🥒 Courgettes (100g)</button>
-  <button onclick="add(30,100)">🥕 Carottes (100g)</button>
-  <button onclick="add(30,100)">🥬 Haricots verts (100g)</button>
+  <button onclick="add(35,100,3,7,0)">🥦 Brocolis (100g)</button>
+  <button onclick="add(20,100,1,4,0)">🥒 Courgettes (100g)</button>
+  <button onclick="add(30,100,1,7,0)">🥕 Carottes (100g)</button>
+  <button onclick="add(30,100,2,6,0)">🥬 Haricots verts (100g)</button>
 </div>
   
 <div class="card">
@@ -242,18 +285,30 @@ circle {
 let calories = 0;
 let weight = 0;
 
-let maxCal = 3000;
-let maxWeight = 2000; // objectif poids (g)
+let protein = 0;
+let carbs = 0;
+let fat = 0;
 
-function add(cal, g) {
+let maxCal = 3000;
+let maxWeight = 2000;
+
+function add(cal, g, p, c, f) {
   calories += cal;
   weight += g;
+
+  protein += p;
+  carbs += c;
+  fat += f;
+
   update();
 }
 
 function reset() {
   calories = 0;
   weight = 0;
+  protein = 0;
+  carbs = 0;
+  fat = 0;
   update();
 }
 
@@ -261,11 +316,19 @@ function update() {
   document.getElementById("calories").innerText = calories;
   document.getElementById("weight").innerText = weight;
 
+  document.getElementById("protein").innerText = protein;
+  document.getElementById("carbs").innerText = carbs;
+  document.getElementById("fat").innerText = fat;
+
   let offsetCal = 502 - (502 * (calories / maxCal));
   let offsetWeight = 502 - (502 * (weight / maxWeight));
 
   document.getElementById("circleCal").style.strokeDashoffset = offsetCal;
   document.getElementById("circleWeight").style.strokeDashoffset = offsetWeight;
+
+  document.getElementById("proteinBar").style.width = (protein / 180 * 100) + "%";
+  document.getElementById("carbsBar").style.width = (carbs / 350 * 100) + "%";
+  document.getElementById("fatBar").style.width = (fat / 90 * 100) + "%";
 }
 </script>
 
