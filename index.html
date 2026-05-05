@@ -155,14 +155,7 @@ circle {
   gap: 30px;
 }
 
-.side-logo {
-  align-self: center;
-width: 130px;
-  height: 130px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 255, 174, 0.5);
-  margin-right: 100px;
-}
+
 
 @media (max-width: 600px) {
   
@@ -172,10 +165,14 @@ width: 130px;
   justify-content: center;
   gap: 40px;
 }
-
   .side-logo {
-    width: 70px;
-    height: 70px;
+  align-self: center;
+width: 130px;
+  height: 130px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 174, 0.5);
+  margin-right: 100px;
+}
   }
 
   #foodList {
@@ -297,6 +294,7 @@ width: 130px;
 </div>
 
 <script>
+let foodCounts = {};
 let calories = 0;
 let weight = 0;
 
@@ -315,23 +313,84 @@ function add(cal, g, p, c, f, name) {
   carbs += c;
   fat += f;
 
-  // AJOUT LISTE
-  let li = document.createElement("li");
-  li.textContent = name;
-  li.onclick = () => li.remove();
-  document.getElementById("foodList").appendChild(li);
+  if (foodCounts[name]) {
+    foodCounts[name]++;
+  } else {
+    foodCounts[name] = 1;
+  }
 
-  update();
+  renderList();
+  update(); // ✅ AJOUT IMPORTANT
 }
 
+function renderList() {
+  let list = document.getElementById("foodList");
+  list.innerHTML = "";
+
+  for (let food in foodCounts) {
+    let li = document.createElement("li");
+    li.textContent = food + " ×" + foodCounts[food];
+
+    li.onclick = () => {
+      foodCounts[food]--;
+
+      // ⚠️ recalcul total complet
+      recalcAll();
+
+      if (foodCounts[food] <= 0) {
+        delete foodCounts[food];
+      }
+
+      renderList();
+    };
+
+    list.appendChild(li);
+  }
+}
+  
 function reset() {
   calories = 0;
   weight = 0;
   protein = 0;
   carbs = 0;
   fat = 0;
-
+  foodCounts = {};
   document.getElementById("foodList").innerHTML = "";
+
+  update();
+ }
+  
+  function recalcAll() {
+  calories = 0;
+  weight = 0;
+  protein = 0;
+  carbs = 0;
+  fat = 0;
+
+  for (let food in foodCounts) {
+    let count = foodCounts[food];
+
+    // retrouver le bouton correspondant
+    document.querySelectorAll("button").forEach(btn => {
+      if (btn.getAttribute("onclick")?.includes(food)) {
+        let args = btn.getAttribute("onclick")
+          .match(/add\((.*?)\)/)[1]
+          .split(",");
+
+        let cal = parseFloat(args[0]);
+        let g = parseFloat(args[1]);
+        let p = parseFloat(args[2]);
+        let c = parseFloat(args[3]);
+        let f = parseFloat(args[4]);
+
+        calories += cal * count;
+        weight += g * count;
+        protein += p * count;
+        carbs += c * count;
+        fat += f * count;
+      }
+    });
+  }
 
   update();
 }
@@ -354,6 +413,8 @@ function update() {
   document.getElementById("carbsBar").style.width = (carbs / 350 * 100) + "%";
   document.getElementById("fatBar").style.width = (fat / 90 * 100) + "%";
 }
+  
+  
   
 </script>
 
