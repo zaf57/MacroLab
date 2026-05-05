@@ -53,31 +53,6 @@ button:hover {
   color: #00ffae;
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 25px;
-  margin-bottom: 20px;
-  background: linear-gradient(145deg, #111, #1c1c1c);
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 255, 174, 0.15);
-}
-
-.logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  box-shadow: 0 0 15px rgba(0, 255, 174, 0.5);
-  transition: 0.3s;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(0, 255, 174, 0.9);
-}
-
 h1 {
   margin: 0;
   font-size: 28px;
@@ -174,18 +149,42 @@ circle {
 #proteinBar { background: #00ffae; }
 #carbsBar { background: #00bfff; }
 #fatBar { background: #ffcc00; }
+  
+  .top-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.side-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 174, 0.5);
+}
+
+@media (max-width: 600px) {
+  .top-section {
+    flex-direction: column;
+  }
+
+  .side-logo {
+    width: 70px;
+    height: 70px;
+  }
+}
 
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <img src="MacroLab.png" alt="logo" class="logo">
-  <p class="subtitle">Fuel your performance</p>
-</div>
+<div class="top-section">
 
-<div class="circles">
+  <img src="MacroLab.png" class="side-logo">
+
+  <div class="circles">
 
   <!-- CALORIES -->
   <div class="circle-container">
@@ -211,7 +210,8 @@ circle {
     </div>
   </div>
 
-</div>
+</div> <!-- fin circles -->
+</div> <!-- fin top-section -->
   
  
 
@@ -241,7 +241,7 @@ circle {
   <button onclick="add(208,100,20,0,13)">🐟 Saumon (100g)</button>
   <button onclick="add(120,100,26,0,1)">🐟 Thon (100g)</button>
   <button onclick="add(73,60,6,1,5)">🥚 1 Œuf</button>
-  <button onclick="(80,100,8,4,3)">🥛 Fromage blanc (100g)</button>
+  <button onclick="add(80,100,8,4,3)">🥛 Fromage blanc (100g)</button>
   <button onclick="add(120,30,24,3,1)">🥤 Whey</button>
 </div>
 
