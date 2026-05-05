@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>MacroLab</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #0f0f0f;
+  color: #fff;
+  padding: 20px;
+}
+
+h1 {
+  color: #00ffae;
+}
+
+.card {
+  background: #1c1c1c;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+button {
+  background: #2a2a2a;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #00ffae;
+  color: black;
+}
+
+.result {
+  font-size: 24px;
+  margin-top: 20px;
+  color: #00ffae;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔥 MacroLab</h1>
+<p>Track tes calories rapidement</p>
+
+<div class="card">
+<h2>💪 Protéines</h2>
+  <button onclick="add(165)">🍗 Poulet (100g)</button>
+  <button onclick="add(250)">🐄 Steak (100g)</button>
+  <button onclick="add(208)">🐟 Saumon (100g)</button>
+  <button onclick="add(120)">🐟 Thon (100g)</button>
+  <button onclick="add(70)">🥚 Œuf</button>
+  <button onclick="add(80)">🥛 Fromage blanc (100g)</button>
+  <button onclick="add(120)">🥤 Whey</button>
+</div>
+
+<div class="card">
+<h2>🍚 Glucides</h2>
+  <button onclick="add(110)">🍚 Riz (100g)</button>
+  <button onclick="add(130)">🍝 Pâtes (100g)</button>
+  <button onclick="add(90)">🥔 Pomme de terre (100g)</button>
+  <button onclick="add(90)">🍌 Banane</button>
+  <button onclick="add(240)">🍞 Pain (100g)</button>
+  <button onclick="add(300)">🍯 Miel (100g)</button>
+</div>
+
+<div class="card">
+<h2>🧈 Lipides</h2>
+  <button onclick="add(90)">🫒 Huile (10g)</button>
+  <button onclick="add(580)">🌰 Amandes (100g)</button>
+  <button onclick="add(590)">🥜 Beurre de cacahuète (100g)</button>
+  <button onclick="add(400)">🥑 Avocat</button>
+  <button onclick="add(400)">🧀 Fromage</button>
+</div>
+
+  <!-- LEGUMES -->
+<h2>🥦 Légumes</h2>
+<div class="card">
+  <button onclick="add(35)">🥦 Brocolis (100g)</button>
+  <button onclick="add(20)">🥒 Courgettes (100g)</button>
+  <button onclick="add(30)">🥕 Carottes (100g)</button>
+  <button onclick="add(30)">🥬 Haricots verts (100g)</button>
+</div>
+  
+<div class="card">
+<button onclick="reset()">🔄 Reset</button>
+</div>
+
+<div class="result">
+🔥 Total : <span id="total">0</span> kcal
+</div>
+
+<script>
+let total = 0;
+
+function add(cal) {
+  total += cal;
+  document.getElementById("total").innerText = total;
+}
+
+function reset() {
+  total = 0;
+  document.getElementById("total").innerText = 0;
+}
+</script>
+
+</body>
+</html>
