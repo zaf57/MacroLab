@@ -29,7 +29,7 @@ h1 {
   align-items: center;     /* centre horizontal */
   justify-content: center; /* centre vertical */
   text-align: center;      /* centre le texte */
-  margin-bottom: 0px;
+  margin-bottom: 20px;
 }
   
 .card {
@@ -39,7 +39,7 @@ h1 {
   background: #1c1c1c;
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
   
-  /*display: flex;*/
+    display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -195,11 +195,12 @@ circle {
   gap: 80px;
 }
 
-  .top-section {
+.top-section {
   display: flex;
-  align-items: center;   /* aligne verticalement */
+  align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 50px;
+  flex-wrap: wrap;
 }
   .side-logo {
   align-self: center;
@@ -220,66 +221,82 @@ circle {
   border-bottom: 1px solid #333;
   font-size: 16px;
 }
+  .top-card {
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 25px;
+  background: linear-gradient(145deg, #111, #1c1c1c);
+  box-shadow: 0 0 25px rgba(0, 255, 174, 0.1);
+}
+  
   
 
 </style>
 </head>
 
 <body>
-<div class="header">
-  <img src="MacroLab.png" class="side-logo">
-   <p class="subtitle">Fuel your performance</p>
-</div>
+  <div class="header">
+    <img src="MacroLab.png" class="side-logo">
+    <p class="subtitle">Fuel your performance</p>
+  </div>
+  
+  <div class="card top-card">
+
+
 
   <div class="top-section">
 
+    <div class="circles">
 
-  <div class="circles">
+      <!-- CALORIES -->
+      <div class="circle-container">
+        <svg width="180" height="180">
+          <circle cx="90" cy="90" r="80" class="bg"></circle>
+          <circle cx="90" cy="90" r="80" class="progress" id="circleCal"></circle>
+        </svg>
+        <div class="circle-text">
+          <span id="calories">0</span>
+          <p>kcal</p>
+        </div>
+      </div>
 
-  <!-- CALORIES -->
-  <div class="circle-container">
-    <svg width="180" height="180">
-      <circle cx="90" cy="90" r="80" class="bg"></circle>
-      <circle cx="90" cy="90" r="80" class="progress" id="circleCal"></circle>
-    </svg>
-    <div class="circle-text">
-      <span id="calories">0</span>
-      <p>kcal</p>
+      <!-- POIDS -->
+      <div class="circle-container">
+        <svg width="180" height="180">
+          <circle cx="90" cy="90" r="80" class="bg"></circle>
+          <circle cx="90" cy="90" r="80" class="progress weight" id="circleWeight"></circle>
+        </svg>
+        <div class="circle-text">
+          <span id="weight">0</span>
+          <p>g</p>
+        </div>
+      </div>
+
     </div>
-  </div>
 
-  <!-- POIDS -->
-  <div class="circle-container">
-    <svg width="180" height="180">
-      <circle cx="90" cy="90" r="80" class="bg"></circle>
-      <circle cx="90" cy="90" r="80" class="progress weight" id="circleWeight"></circle>
-    </svg>
-    <div class="circle-text">
-      <span id="weight">0</span>
-      <p>g</p>
+    <div class="macros">
+
+      <div>
+        <p>💪 Protéines: <span id="protein">0</span>g</p>
+        <div class="bar"><div id="proteinBar"></div></div>
+      </div>
+
+      <div>
+        <p>🍚 Glucides: <span id="carbs">0</span>g</p>
+        <div class="bar"><div id="carbsBar"></div></div>
+      </div>
+
+      <div>
+        <p>🧈 Lipides: <span id="fat">0</span>g</p>
+        <div class="bar"><div id="fatBar"></div></div>
+      </div>
+
     </div>
-  </div>
-<div class="macros">
 
-  <div>
-    <p>💪 Protéines: <span id="protein">0</span>g</p>
-    <div class="bar"><div id="proteinBar"></div></div>
   </div>
 
-  <div>
-    <p>🍚 Glucides: <span id="carbs">0</span>g</p>
-    <div class="bar"><div id="carbsBar"></div></div>
-  </div>
-
-  <div>
-    <p>🧈 Lipides: <span id="fat">0</span>g</p>
-    <div class="bar"><div id="fatBar"></div></div>
-  </div>
-
-</div>
-</div> <!-- fin circles -->
-</div> <!-- fin top-section -->
-  
+</div> 
  
 
 
