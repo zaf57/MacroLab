@@ -101,9 +101,25 @@ svg {
   transform: rotate(-90deg);
 }
 
+.circles {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.circle-container {
+  position: relative;
+  width: 180px;
+}
+
+svg {
+  transform: rotate(-90deg);
+}
+
 circle {
   fill: none;
-  stroke-width: 12;
+  stroke-width: 10;
 }
 
 .bg {
@@ -112,10 +128,16 @@ circle {
 
 .progress {
   stroke: #00ffae;
-  stroke-dasharray: 565;
-  stroke-dashoffset: 565;
-  transition: 0.5s ease;
-  filter: drop-shadow(0 0 8px #00ffae);
+  stroke-dasharray: 502;
+  stroke-dashoffset: 502;
+  transition: 0.5s;
+  filter: drop-shadow(0 0 6px #00ffae);
+}
+
+/* Couleur différente pour le poids */
+.weight {
+  stroke: #00bfff;
+  filter: drop-shadow(0 0 6px #00bfff);
 }
 
 .circle-text {
@@ -129,12 +151,6 @@ circle {
 .circle-text span {
   font-size: 28px;
   font-weight: bold;
-  color: #00ffae;
-}
-
-.circle-text p {
-  margin: 0;
-  color: #aaa;
 }
 
 </style>
@@ -147,55 +163,71 @@ circle {
   <p class="subtitle">Fuel your performance</p>
 </div>
 
-  <div class="circle-container">
-  <svg width="200" height="200">
-    <circle cx="100" cy="100" r="90" class="bg"></circle>
-    <circle cx="100" cy="100" r="90" class="progress" id="circle"></circle>
-  </svg>
+<div class="circles">
 
-  <div class="circle-text">
-    <span id="calories">0</span>
-    <p>kcal</p>
+  <!-- CALORIES -->
+  <div class="circle-container">
+    <svg width="180" height="180">
+      <circle cx="90" cy="90" r="80" class="bg"></circle>
+      <circle cx="90" cy="90" r="80" class="progress" id="circleCal"></circle>
+    </svg>
+    <div class="circle-text">
+      <span id="calories">0</span>
+      <p>kcal</p>
+    </div>
   </div>
+
+  <!-- POIDS -->
+  <div class="circle-container">
+    <svg width="180" height="180">
+      <circle cx="90" cy="90" r="80" class="bg"></circle>
+      <circle cx="90" cy="90" r="80" class="progress weight" id="circleWeight"></circle>
+    </svg>
+    <div class="circle-text">
+      <span id="weight">0</span>
+      <p>g</p>
+    </div>
+  </div>
+
 </div>
   
 <div class="card">
 <h2>💪 Protéines</h2>
-  <button onclick="add(165)">🍗 Poulet (100g)</button>
-  <button onclick="add(250)">🐄 Steak (100g)</button>
-  <button onclick="add(208)">🐟 Saumon (100g)</button>
-  <button onclick="add(120)">🐟 Thon (100g)</button>
-  <button onclick="add(70)">🥚 Œuf</button>
-  <button onclick="add(80)">🥛 Fromage blanc (100g)</button>
-  <button onclick="add(120)">🥤 Whey</button>
+  <button onclick="add(165,100)">🍗 Poulet (100g)</button>
+  <button onclick="add(250,100)">🐄 Steak (100g)</button>
+  <button onclick="add(208,100)">🐟 Saumon (100g)</button>
+  <button onclick="add(120,100)">🐟 Thon (100g)</button>
+  <button onclick="add(73,60)">🥚 1 Œuf</button>
+  <button onclick="add(80,100)">🥛 Fromage blanc (100g)</button>
+  <button onclick="add(120,30)">🥤 Whey</button>
 </div>
 
 <div class="card">
 <h2>🍚 Glucides</h2>
-  <button onclick="add(110)">🍚 Riz (100g)</button>
-  <button onclick="add(130)">🍝 Pâtes (100g)</button>
-  <button onclick="add(90)">🥔 Pomme de terre (100g)</button>
-  <button onclick="add(90)">🍌 Banane</button>
-  <button onclick="add(240)">🍞 Pain (100g)</button>
-  <button onclick="add(300)">🍯 Miel (100g)</button>
+  <button onclick="add(110,100)">🍚 Riz (100g)</button>
+  <button onclick="add(130,100)">🍝 Pâtes (100g)</button>
+  <button onclick="add(90,100)">🥔 Pomme de terre (100g)</button>
+  <button onclick="add(90,110)">🍌 Banane</button>
+  <button onclick="add(240,100)">🍞 Pain (100g)</button>
+  <button onclick="add(68,20)">🍯 Miel (20g)</button>
 </div>
 
 <div class="card">
 <h2>🧈 Lipides</h2>
-  <button onclick="add(90)">🫒 Huile (10g)</button>
-  <button onclick="add(580)">🌰 Amandes (100g)</button>
-  <button onclick="add(590)">🥜 Beurre de cacahuète (100g)</button>
-  <button onclick="add(400)">🥑 Avocat</button>
-  <button onclick="add(400)">🧀 Fromage</button>
+  <button onclick="add(90,10)">🫒 Huile (10g)</button>
+  <button onclick="add(183,30)">🌰 Amandes (30g)</button>
+  <button onclick="add(122,20)">🥜 Beurre de cacahuète (20g)</button>
+  <button onclick="add(246,150)">🥑 Avocat</button>
+  <button onclick="add(200,50)">🧀 Fromage (50g)</button>
 </div>
 
   <!-- LEGUMES -->
 <h2>🥦 Légumes</h2>
 <div class="card">
-  <button onclick="add(35)">🥦 Brocolis (100g)</button>
-  <button onclick="add(20)">🥒 Courgettes (100g)</button>
-  <button onclick="add(30)">🥕 Carottes (100g)</button>
-  <button onclick="add(30)">🥬 Haricots verts (100g)</button>
+  <button onclick="add(35,100)">🥦 Brocolis (100g)</button>
+  <button onclick="add(20,100)">🥒 Courgettes (100g)</button>
+  <button onclick="add(30,100)">🥕 Carottes (100g)</button>
+  <button onclick="add(30,100)">🥬 Haricots verts (100g)</button>
 </div>
   
 <div class="card">
@@ -207,29 +239,33 @@ circle {
 </div>
 
 <script>
-let total = 0;
-let max = 3000; // objectif calories
+let calories = 0;
+let weight = 0;
 
-function add(cal) {
-  total += cal;
+let maxCal = 3000;
+let maxWeight = 2000; // objectif poids (g)
+
+function add(cal, g) {
+  calories += cal;
+  weight += g;
   update();
-  if (total >= max) {
-  document.getElementById("circle").style.stroke = "red";
-}
 }
 
 function reset() {
-  total = 0;
+  calories = 0;
+  weight = 0;
   update();
 }
 
 function update() {
-  document.getElementById("calories").innerText = total;
+  document.getElementById("calories").innerText = calories;
+  document.getElementById("weight").innerText = weight;
 
-  let percent = total / max;
-  let offset = 565 - (565 * percent);
+  let offsetCal = 502 - (502 * (calories / maxCal));
+  let offsetWeight = 502 - (502 * (weight / maxWeight));
 
-  document.getElementById("circle").style.strokeDashoffset = offset;
+  document.getElementById("circleCal").style.strokeDashoffset = offsetCal;
+  document.getElementById("circleWeight").style.strokeDashoffset = offsetWeight;
 }
 </script>
 
