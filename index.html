@@ -91,6 +91,52 @@ h1 {
   color: #aaa;
 }
 
+  .circle-container {
+  position: relative;
+  width: 200px;
+  margin: 30px auto;
+}
+
+svg {
+  transform: rotate(-90deg);
+}
+
+circle {
+  fill: none;
+  stroke-width: 12;
+}
+
+.bg {
+  stroke: #2a2a2a;
+}
+
+.progress {
+  stroke: #00ffae;
+  stroke-dasharray: 565;
+  stroke-dashoffset: 565;
+  transition: 0.5s ease;
+  filter: drop-shadow(0 0 8px #00ffae);
+}
+
+.circle-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.circle-text span {
+  font-size: 28px;
+  font-weight: bold;
+  color: #00ffae;
+}
+
+.circle-text p {
+  margin: 0;
+  color: #aaa;
+}
+
 </style>
 </head>
 
@@ -102,6 +148,18 @@ h1 {
   <p class="subtitle">Fuel your performance</p>
 </div>
 
+  <div class="circle-container">
+  <svg width="200" height="200">
+    <circle cx="100" cy="100" r="90" class="bg"></circle>
+    <circle cx="100" cy="100" r="90" class="progress" id="circle"></circle>
+  </svg>
+
+  <div class="circle-text">
+    <span id="calories">0</span>
+    <p>kcal</p>
+  </div>
+</div>
+  
 <div class="card">
 <h2>💪 Protéines</h2>
   <button onclick="add(165)">🍗 Poulet (100g)</button>
@@ -151,15 +209,28 @@ h1 {
 
 <script>
 let total = 0;
+let max = 3000; // objectif calories
 
 function add(cal) {
   total += cal;
-  document.getElementById("total").innerText = total;
+  update();
+  if (total >= max) {
+  document.getElementById("circle").style.stroke = "red";
+}
 }
 
 function reset() {
   total = 0;
-  document.getElementById("total").innerText = 0;
+  update();
+}
+
+function update() {
+  document.getElementById("calories").innerText = total;
+
+  let percent = total / max;
+  let offset = 565 - (565 * percent);
+
+  document.getElementById("circle").style.strokeDashoffset = offset;
 }
 </script>
 
