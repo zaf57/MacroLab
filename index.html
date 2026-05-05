@@ -78,14 +78,12 @@ svg {
 
 .circles {
   display: flex;
-  justify-content: center;
   gap: 30px;
-  margin-top: 30px;
+  align-items: center;
 }
 
 .circle-container {
-  position: relative;
-  width: 180px;
+  margin: 0;
 }
 
 svg {
@@ -158,7 +156,8 @@ circle {
 }
 
 .side-logo {
-  width: 130px;
+  align-self: center;
+width: 130px;
   height: 130px;
   border-radius: 20px;
   box-shadow: 0 0 20px rgba(0, 255, 174, 0.5);
@@ -166,9 +165,13 @@ circle {
 }
 
 @media (max-width: 600px) {
-  .top-section {
-    flex-direction: column;
-  }
+  
+.top-section {
+  display: flex;
+  align-items: center;   /* aligne verticalement */
+  justify-content: center;
+  gap: 40px;
+}
 
   .side-logo {
     width: 70px;
