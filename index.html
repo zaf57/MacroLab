@@ -24,18 +24,38 @@ h1 {
 }
 
 .card {
-  background: #1c1c1c;
   padding: 15px;
-  border-radius: 12px;
+  border-radius: 16px;
   margin-bottom: 15px;
+  background: #1c1c1c;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  
+    display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+  .protein-card {
+  border-left: 5px solid #00ffae;
+}
+
+.carbs-card {
+  border-left: 5px solid #00bfff;
+}
+
+.fat-card {
+  border-left: 5px solid #ffcc00;
+}
+
+.veggie-card {
+  border-left: 5px solid #66ff66;
 }
 
 button {
   background: #2a2a2a;
   border: none;
-  padding: 10px;
-  margin: 5px;
-  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 6px;
+  border-radius: 20px;
   color: white;
   cursor: pointer;
   transition: 0.2s;
@@ -43,6 +63,7 @@ button {
 }
 
 button:hover {
+  transform: scale(1.05);
   background: #00ffae;
   color: black;
 }
@@ -189,7 +210,7 @@ circle {
 #foodList li {
   padding: 8px;
   border-bottom: 1px solid #333;
-  font-size: 20px;
+  font-size: 16px;
 }
   
 
@@ -254,7 +275,7 @@ circle {
 
 </div>
   
-<div class="card">
+<div class="card protein-card">
 <h2>💪 Protéines</h2>
 <button onclick="add(165,100,31,0,3,'🍗 Poulet (100g)')">🍗 Poulet (100g)</button>
 <button onclick="add(250,100,26,0,20,'🐄 Steak (100g)')">🐄 Steak (100g)</button>
@@ -265,7 +286,7 @@ circle {
 <button onclick="add(120,30,24,3,1,'🥤 Whey (30g)')">🥤 Whey</button>
 </div>
 
-<div class="card">
+<div class="card carbs-card">
 <h2>🍚 Glucides</h2>
 <button onclick="add(110,100,2,23,1,'🍚 Riz (100g)')">🍚 Riz (100g)</button>
 <button onclick="add(130,100,5,25,1,'🍝 Pâtes (100g)')">🍝 Pâtes (100g)</button>
@@ -275,7 +296,7 @@ circle {
 <button onclick="add(68,20,0,17,0,'🍯 Miel (20g)')">🍯 Miel (20g)</button>
 </div>
 
-<div class="card">
+<div class="card fat-card">
 <h2>🧈 Lipides</h2>
 <button onclick="add(90,10,0,0,10,'🫒 Huile (10g)')">🫒 Huile (10g)</button>
 <button onclick="add(183,30,6,6,15,'🌰 Amandes (30g)')">🌰 Amandes (30g)</button>
@@ -284,8 +305,8 @@ circle {
 <button onclick="add(200,50,12,1,16,'🧀 Fromage (50g)')">🧀 Fromage (50g)</button>
 </div>
 
+<div class="card veggie-card">
 <h2>🥦 Légumes</h2>
-<div class="card">
 <button onclick="add(35,100,3,7,0,'🥦 Brocolis (100g)')">🥦 Brocolis (100g)</button>
 <button onclick="add(20,100,1,4,0,'🥒 Courgettes (100g)')">🥒 Courgettes (100g)</button>
 <button onclick="add(30,100,1,7,0,'🥕 Carottes (100g)')">🥕 Carottes (100g)</button>
@@ -297,7 +318,7 @@ circle {
 </div>
 
   <div class="card">
-  <h2>📋 Aliments ajoutés:</h2>
+  <h2>📋 Aliments ajoutés</h2>
   <ul id="foodList"></ul>
 </div>
 
