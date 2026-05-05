@@ -1,0 +1,20 @@
+{
+  "name": "MacroLab",
+  "short_name": "MacroLab",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#00ffae",
+  "icons": [
+    {
+      "src": "MacroLab.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "MacroLab.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
