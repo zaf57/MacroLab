@@ -177,7 +177,18 @@ width: 130px;
     width: 70px;
     height: 70px;
   }
+
+  #foodList {
+  list-style: none;
+  padding: 0;
 }
+
+#foodList li {
+  padding: 8px;
+  border-bottom: 1px solid #333;
+  font-size: 16px;
+}
+  
 
 </style>
 </head>
@@ -240,47 +251,50 @@ width: 130px;
   
 <div class="card">
 <h2>💪 Protéines</h2>
-  <button onclick="add(165,100,31,0,3)">🍗 Poulet (100g)</button>
-  <button onclick="add(250,100,26,0,20)">🐄 Steak (100g)</button>
-  <button onclick="add(208,100,20,0,13)">🐟 Saumon (100g)</button>
-  <button onclick="add(120,100,26,0,1)">🐟 Thon (100g)</button>
-  <button onclick="add(73,60,6,1,5)">🥚 1 Œuf</button>
-  <button onclick="add(80,100,8,4,3)">🥛 Fromage blanc (100g)</button>
-  <button onclick="add(120,30,24,3,1)">🥤 Whey</button>
+<button onclick="add(165,100,31,0,3,'🍗 Poulet (100g)')">🍗 Poulet (100g)</button>
+<button onclick="add(250,100,26,0,20,'🐄 Steak (100g)')">🐄 Steak (100g)</button>
+<button onclick="add(208,100,20,0,13,'🐟 Saumon (100g)')">🐟 Saumon (100g)</button>
+<button onclick="add(120,100,26,0,1,'🐟 Thon (100g)')">🐟 Thon (100g)</button>
+<button onclick="add(73,60,6,1,5,'🥚 1 Œuf')">🥚 1 Œuf</button>
+<button onclick="add(80,100,8,4,3,'🥛 Fromage blanc (100g)')">🥛 Fromage blanc (100g)</button>
+<button onclick="add(120,30,24,3,1,'🥤 Whey (30g)')">🥤 Whey</button>
 </div>
 
 <div class="card">
 <h2>🍚 Glucides</h2>
-  <button onclick="add(110,100,2,23,1)">🍚 Riz (100g)</button>
-  <button onclick="add(130,100,5,25,1)">🍝 Pâtes (100g)</button>
-  <button onclick="add(90,100,2,20,0)">🥔 Pomme de terre (100g)</button>
-  <button onclick="add(90,110,1,23,0)">🍌 Banane</button>
-  <button onclick="add(240,100,8,50,3)">🍞 Pain (100g)</button>
-  <button onclick="add(68,20,0,17,0)">🍯 Miel (20g)</button>
+<button onclick="add(110,100,2,23,1,'🍚 Riz (100g)')">🍚 Riz (100g)</button>
+<button onclick="add(130,100,5,25,1,'🍝 Pâtes (100g)')">🍝 Pâtes (100g)</button>
+<button onclick="add(90,100,2,20,0,'🥔 Pomme de terre (100g)')">🥔 Pomme de terre (100g)</button>
+<button onclick="add(90,110,1,23,0,'🍌 Banane')">🍌 Banane</button>
+<button onclick="add(240,100,8,50,3,'🍞 Pain (100g)')">🍞 Pain (100g)</button>
+<button onclick="add(68,20,0,17,0,'🍯 Miel (20g)')">🍯 Miel (20g)</button>
 </div>
 
 <div class="card">
 <h2>🧈 Lipides</h2>
-  <button onclick="add(90,10,0,0,10)">🫒 Huile (10g)</button>
-  <button onclick="add(183,30,6,6,15)">🌰 Amandes (30g)</button>
-  <button onclick="add(122,20,5,4,10)">🥜 Beurre de cacahuète (20g)</button>
-  <button onclick="add(246,150,3,12,22)">🥑 Avocat</button>
-  <button onclick="add(200,50,12,1,16)">🧀 Fromage (50g)</button>
+<button onclick="add(90,10,0,0,10,'🫒 Huile (10g)')">🫒 Huile (10g)</button>
+<button onclick="add(183,30,6,6,15,'🌰 Amandes (30g)')">🌰 Amandes (30g)</button>
+<button onclick="add(122,20,5,4,10,'🥜 Beurre de cacahuète (20g)')">🥜 Beurre de cacahuète (20g)</button>
+<button onclick="add(246,150,3,12,22,'🥑 Avocat')">🥑 Avocat</button>
+<button onclick="add(200,50,12,1,16,'🧀 Fromage (50g)')">🧀 Fromage (50g)</button>
 </div>
 
-  <!-- LEGUMES -->
 <h2>🥦 Légumes</h2>
 <div class="card">
-  <button onclick="add(35,100,3,7,0)">🥦 Brocolis (100g)</button>
-  <button onclick="add(20,100,1,4,0)">🥒 Courgettes (100g)</button>
-  <button onclick="add(30,100,1,7,0)">🥕 Carottes (100g)</button>
-  <button onclick="add(30,100,2,6,0)">🥬 Haricots verts (100g)</button>
+<button onclick="add(35,100,3,7,0,'🥦 Brocolis (100g)')">🥦 Brocolis (100g)</button>
+<button onclick="add(20,100,1,4,0,'🥒 Courgettes (100g)')">🥒 Courgettes (100g)</button>
+<button onclick="add(30,100,1,7,0,'🥕 Carottes (100g)')">🥕 Carottes (100g)</button>
+<button onclick="add(30,100,2,6,0,'🥬 Haricots verts (100g)')">🥬 Haricots verts (100g)</button>
 </div>
   
 <div class="card">
 <button onclick="reset()">🔄 Reset</button>
 </div>
 
+  <div class="card">
+  <h2>📋 Aliments ajoutés</h2>
+  <ul id="foodList"></ul>
+</div>
 
 <script>
 let calories = 0;
@@ -293,13 +307,19 @@ let fat = 0;
 let maxCal = 3000;
 let maxWeight = 2000;
 
-function add(cal, g, p, c, f) {
+function add(cal, g, p, c, f, name) {
   calories += cal;
   weight += g;
 
   protein += p;
   carbs += c;
   fat += f;
+
+  // AJOUT LISTE
+  let li = document.createElement("li");
+  li.textContent = name;
+  li.onclick = () => li.remove();
+  document.getElementById("foodList").appendChild(li);
 
   update();
 }
@@ -310,6 +330,9 @@ function reset() {
   protein = 0;
   carbs = 0;
   fat = 0;
+
+  document.getElementById("foodList").innerHTML = "";
+
   update();
 }
 
@@ -331,6 +354,7 @@ function update() {
   document.getElementById("carbsBar").style.width = (carbs / 350 * 100) + "%";
   document.getElementById("fatBar").style.width = (fat / 90 * 100) + "%";
 }
+  
 </script>
 
 </body>
