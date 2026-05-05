@@ -23,6 +23,15 @@ h1 {
   color: #00ffae;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centre horizontal */
+  justify-content: center; /* centre vertical */
+  text-align: center;      /* centre le texte */
+  margin-bottom: 20px;
+}
+  
 .card {
   padding: 15px;
   border-radius: 16px;
@@ -82,7 +91,7 @@ h1 {
 }
 
 .subtitle {
-  margin-top: 5px;
+  margin-top: px;
   font-size: 14px;
   color: #aaa;
 }
@@ -147,9 +156,8 @@ circle {
   font-weight: bold;
 }
   
-.macros {
+  .macros {
   margin-top: 30px;
-  margin-bottom: 30px;
 }
 
 .bar {
@@ -219,11 +227,29 @@ circle {
 </head>
 
 <body>
-
-<div class="top-section">
 <div class="header">
   <img src="MacroLab.png" class="side-logo">
    <p class="subtitle">Fuel your performance</p>
+</div>
+
+  <div class="top-section">
+<div class="macros">
+
+  <div>
+    <p>💪 Protéines: <span id="protein">0</span>g</p>
+    <div class="bar"><div id="proteinBar"></div></div>
+  </div>
+
+  <div>
+    <p>🍚 Glucides: <span id="carbs">0</span>g</p>
+    <div class="bar"><div id="carbsBar"></div></div>
+  </div>
+
+  <div>
+    <p>🧈 Lipides: <span id="fat">0</span>g</p>
+    <div class="bar"><div id="fatBar"></div></div>
+  </div>
+
 </div>
 
   <div class="circles">
@@ -257,24 +283,7 @@ circle {
   
  
 
-<div class="macros">
 
-  <div>
-    <p>💪 Protéines: <span id="protein">0</span>g</p>
-    <div class="bar"><div id="proteinBar"></div></div>
-  </div>
-
-  <div>
-    <p>🍚 Glucides: <span id="carbs">0</span>g</p>
-    <div class="bar"><div id="carbsBar"></div></div>
-  </div>
-
-  <div>
-    <p>🧈 Lipides: <span id="fat">0</span>g</p>
-    <div class="bar"><div id="fatBar"></div></div>
-  </div>
-
-</div>
   
 <div class="card protein-card">
 <h2>💪 Protéines</h2>
