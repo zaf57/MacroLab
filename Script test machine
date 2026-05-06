@@ -1,38 +1,29 @@
 // ==UserScript==
 // @name         Traduction Machines Atelier
-// @namespace    usine
-// @version      1.0
-// @description  Affichage simplifié des machines
+// @namespace    atelier
+// @version      2.0
+// @description  Affichage simplifié machines
 // @match        http://*
 // @match        https://*
 // @grant        none
+// @run-at       document-end
 // ==/UserScript==
 
 (function () {
+
     'use strict';
 
     // =========================
-    // TABLE DE CORRESPONDANCE
+    // CORRESPONDANCES
     // =========================
 
     const traductions = {};
 
-    // Génération automatique :
-    // CUA1D -> 1/1D
-    // CUA2D -> 1/2D
-    // ...
-    // CUA9G -> 1/9G
-
-    const lettres = ['D', 'G'];
-
-    lettres.forEach(lettre => {
+    ['D', 'G'].forEach(lettre => {
 
         for (let i = 1; i <= 9; i++) {
 
-            const codeOriginal = `CUA${i}${lettre}`;
-            const codeOperateur = `1/${i}${lettre}`;
-
-            traductions[codeOriginal] = codeOperateur;
+            traductions[`CUA${i}${lettre}`] = `1/${i}${lettre}`;
         }
     });
 
@@ -42,9 +33,9 @@
 
     const style = document.createElement('style');
 
-    style.innerHTML = `
-        .machine-traduction {
-            color: #2196f3;
+    style.textContent = `
+        .machine-alias {
+            color: #2196F3;
             font-weight: bold;
             margin-left: 4px;
         }
@@ -53,16 +44,23 @@
     document.head.appendChild(style);
 
     // =========================
-    // REMPLACEMENT TEXTE
+    // TRAITEMENT
     // =========================
 
-    function remplacerTexte(node) {
+    function traiterNode(node) {
 
         // Ignore certains éléments
         if (
-            node.parentNode &&
+            !node ||
+            !node.parentNode ||
             ['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT'].includes(node.parentNode.tagName)
         ) {
+            return;
+        }
+
+        // Evite retraitement
+        if (node.parentNode.classList &&
+            node.parentNode.classList.contains('machine-processed')) {
             return;
         }
 
@@ -70,63 +68,47 @@
         if (node.nodeType === Node.TEXT_NODE) {
 
             let texte = node.nodeValue;
-
-            let remplacementEffectue = false;
+            let trouve = false;
 
             for (const code in traductions) {
 
                 if (texte.includes(code)) {
 
-                    remplacementEffectue = true;
+                    trouve = true;
 
                     texte = texte.replaceAll(
                         code,
-                        `${code}|||${traductions[code]}`
+                        `${code}<span class="machine-alias">(${traductions[code]})</span>`
                     );
                 }
             }
 
-            if (remplacementEffectue) {
+            if (trouve) {
 
                 const span = document.createElement('span');
 
-                const morceaux = texte.split('|||');
+                span.className = 'machine-processed';
 
-                // Reconstruction HTML propre
-                let html = morceaux[0];
-
-                for (let i = 1; i < morceaux.length; i++) {
-
-                    const traduction = morceaux[i];
-
-                    html += `
-                        <span class="machine-traduction">
-                            (${traduction})
-                        </span>
-                    `;
-                }
-
-                span.innerHTML = html;
+                span.innerHTML = texte;
 
                 node.parentNode.replaceChild(span, node);
             }
         }
 
-        // Parcours récursif
         else {
 
-            node.childNodes.forEach(remplacerTexte);
+            node.childNodes.forEach(traiterNode);
         }
     }
 
     // =========================
-    // LANCEMENT INITIAL
+    // LANCEMENT
     // =========================
 
-    remplacerTexte(document.body);
+    traiterNode(document.body);
 
     // =========================
-    // SURVEILLANCE TEMPS RÉEL
+    // SURVEILLANCE TEMPS REEL
     // =========================
 
     const observer = new MutationObserver((mutations) => {
@@ -135,7 +117,7 @@
 
             mutation.addedNodes.forEach((node) => {
 
-                remplacerTexte(node);
+                traiterNode(node);
             });
         });
     });
