@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MacroLab</title>
+
+  <link rel="icon" type="image/png" href="MacroLab.png">
+
+  <!-- Redirection auto -->
+  <meta http-equiv="refresh" content="3; url=https://macrolab-omad.web.app/">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #1a1a1a 0%, #0f0f0f 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.05);
+
+      box-shadow:
+        0 0 40px rgba(0,255,174,0.12),
+        inset 0 0 20px rgba(255,255,255,0.02);
+
+      animation: fadeIn 1s ease;
+    }
+
+    .logo {
+      width: 160px;
+      margin-bottom: 25px;
+
+      filter:
+        drop-shadow(0 0 12px rgba(0,255,174,0.6))
+        drop-shadow(0 0 30px rgba(0,255,174,0.25));
+
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    .macro {
+      color: white;
+    }
+
+    .lab {
+      color: #00ffae;
+    }
+
+    p {
+      color: #bdbdbd;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .loader {
+      width: 220px;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50px;
+      overflow: hidden;
+      margin: auto;
+    }
+
+    .loader-bar {
+      height: 100%;
+      width: 0%;
+      border-radius: 50px;
+
+      background: linear-gradient(
+        90deg,
+        #00ffae,
+        #00bfff
+      );
+
+      animation: loading 3s linear forwards;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 28px;
+      border-radius: 18px;
+
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+
+      background: linear-gradient(
+        90deg,
+        #00ffae,
+        #00bfff
+      );
+
+      transition: 0.25s;
+
+      box-shadow:
+        0 0 15px rgba(0,255,174,0.35);
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 25px rgba(0,255,174,0.6);
+    }
+
+    @keyframes loading {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.03);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <img src="MacroLab.png" class="logo">
+
+    <h1>
+      <span class="macro">MACRO</span><span class="lab">LAB</span>
+    </h1>
+
+    <p>
+      Redirection vers la nouvelle application...
+    </p>
+
+    <div class="loader">
+      <div class="loader-bar"></div>
+    </div>
+
+    <a class="btn" href="https://macrolab-omad.web.app/">
+      Ouvrir maintenant
+    </a>
+
+  </div>
+
+</body>
+</html>
